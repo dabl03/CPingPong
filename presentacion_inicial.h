@@ -57,7 +57,7 @@
                    "El juego termina si uno de los jugadores pierde todas su vida o si se perciona la tecla \"Q\".",
                    " ",
                    "Para pausar el juego solo debe precionar la letra \"P\" y listo.",
-                   "¿Estas aburrido con los colores de la terminal?. No te preocupes agrege una opcion para ti. Solo ve al menu de inicio, entra en la seccion de colores y pulsas la tecla enter y veras tres opciones:",
+                   "Â¿Estas aburrido con los colores de la terminal?. No te preocupes agrege una opcion para ti. Solo ve al menu de inicio, entra en la seccion de colores y pulsas la tecla enter y veras tres opciones:",
                    "",
                    "1- Jugador 1. - Esta opcion le cambia la apariencia al jugador 1.",
                    "",
@@ -65,7 +65,7 @@
                    "",
                    "3- Pelota. - Esta opcion le cambia la apariencia a la pelota.",
                    "",
-                   "4- Fondo. - Esta opcion es especial. Esta opcion te permitirá cambiar el color del fondo. Pero tiene una limitacion:",
+                   "4- Fondo. - Esta opcion es especial. Esta opcion te permitirÃ¡ cambiar el color del fondo. Pero tiene una limitacion:",
                    "",
                    "                 - No se puede elegir colores oscuros.",
                    "",
@@ -75,9 +75,9 @@
         };
         const char* creditos[]={
               "Desarrollado por:",
-              "         - Daniel Briceño.",
+              "         - Daniel BriceÃ±o.",
               "Graficos por:",
-              "          - Daniel Briceño.",
+              "          - Daniel BriceÃ±o.",
               "Libreria usadas:",
               "          - PDcurses: Para los graficos.",
               "          - pthread: Para la creacion y ejecucion de un hilo.",
@@ -118,6 +118,8 @@
                               *cantidad_de_jugadores=DOS_JUGADORES;
                               break;
                          case 2:
+                              continue;
+                         case EXIT:
                               continue;
                    }
                    return MODO_TEXTO;
@@ -231,12 +233,12 @@
                 "- Color negro.",
                 "        - Exit."
           };
-          chtype paletas[INDICE_DE_LISTA(colores_oscuros)-1];//El tamaño de la matris "colores_oscuros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.
-          chtype paletas_de_colores_claros[INDICE_DE_LISTA(colores_claros)-1];//El tamaño de la matris "colores_claros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.
+          chtype paletas[INDICE_DE_LISTA(colores_oscuros)-1];//El tamaÃ±o de la matris "colores_oscuros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.
+          chtype paletas_de_colores_claros[INDICE_DE_LISTA(colores_claros)-1];//El tamaÃ±o de la matris "colores_claros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.
           
           cantidad_de_paletas_total_de_colores=INDICE_DE_LISTA(colores_oscuros)-1;
           clear();
-          /****To...DO: crear paletas de colores claros y dibujarla aquí.
+          /****To...DO: crear paletas de colores claros y dibujarla aquÃ­.
           Usa la lista ya creada en: C:\C_CPP\Experimentos\Experimentando_con_colores_con_ncurses.c
           */
           mvprintw(MIN_Y,MAX_X/3,"Cambiar el color del personaje: %s",personaje);

@@ -9,11 +9,11 @@
 ---------------------------------------------
         Estoy intentando de que sea facil de configurar y ejecutar.
         Utilizo preprocesores para identificar el sistema operativo.
-        Deberia poder ejecutar el programa sin ploblema solo con compilar main y el compilador se encargar† del resto.
+        Deberia poder ejecutar el programa sin ploblema solo con compilar main y el compilador se encargar¬† del resto.
         Uso PDcurses y pthread por lo que debes linkearlo al compilador:
             -lPDcurses -lpthread
         En windows el comando completo quedaria asi:
-                   gcc -Wall PingPong.C -o PingPong.exe -lpthread -lPDcurses
+                   gcc -Wall PingPong.c -o PingPong.exe -lpthread -lPDcurses
         En Linux no se:?
         Tambien dejo un archivo *.bat que llamara al copilador y compilara el archivo para despues poder jugarlo. Su nombre es: compile.bat
 		Tambien deje dos archivos:
@@ -31,10 +31,10 @@ Tambien coloque una opcion para saber como jugarlo. Que tecla debo usar y todo l
                Que debo saber?
 ----------------------------------------------
 El juego me presenta problemas y no entiendo de donde probiene.
-Al salir del juego a el menu principal varias veces el juego se me daÒa.
+Al salir del juego a el menu principal varias veces el juego se me da√±a.
 El juego trae 3 encabezados:
-    presentacion_inicial.h o menu principal. Aqui dibuja toda la precentacion que el usuario ver·.
-    GAME.h Ya aqui se dibujar· el juego y comenzar· todo.
+    presentacion_inicial.h o menu principal. Aqui dibuja toda la precentacion que el usuario ver√°.
+    GAME.h Ya aqui se dibujar√° el juego y comenzar√° todo.
     recurso_h.h Es la ultima pero no la menos importante:
         - Aqui defino gran parte del las macros.
         - Dos estructuras grobales.

@@ -57,7 +57,7 @@
                    "El juego termina si uno de los jugadores pierde todas su vida o si se perciona la tecla \"Q\".",
                    " ",
                    "Para pausar el juego solo debe precionar la letra \"P\" y listo.",
-                   "¿Estas aburrido con los colores de la terminal?. No te preocupes agrege una opcion para ti. Solo ve al menu de inicio, entra en la seccion de colores y pulsas la tecla enter y veras tres opciones:",
+                   "�Estas aburrido con los colores de la terminal?. No te preocupes agrege una opcion para ti. Solo ve al menu de inicio, entra en la seccion de colores y pulsas la tecla enter y veras tres opciones:",
                    "",
                    "1- Jugador 1. - Esta opcion le cambia la apariencia al jugador 1.",
                    "",
@@ -65,7 +65,7 @@
                    "",
                    "3- Pelota. - Esta opcion le cambia la apariencia a la pelota.",
                    "",
-                   "4- Fondo. - Esta opcion es especial. Esta opcion te permitirá cambiar el color del fondo. Pero tiene una limitacion:",
+                   "4- Fondo. - Esta opcion es especial. Esta opcion te permitir� cambiar el color del fondo. Pero tiene una limitacion:",
                    "",
                    "                 - No se puede elegir colores oscuros.",
                    "",
@@ -75,9 +75,9 @@
         };
         const char* creditos[]={
               "Desarrollado por:",
-              "         - Daniel Briceño.",
+              "         - Daniel Brice�o.",
               "Graficos por:",
-              "          - Daniel Briceño.",
+              "          - Daniel Brice�o.",
               "Libreria usadas:",
               "          - PDcurses: Para los graficos.",
               "          - pthread: Para la creacion y ejecucion de un hilo.",
@@ -94,10 +94,10 @@
         const char* personajes[ ]={"Jugador 1.","Jugador 2.","Pelota.","Fondo.","      - Reglesar."};
         int _key_codes_=0;
 		clear();
-		while(true){
+		while(1){
             switch(dibujar_opciones(list,INDICE_DE_LISTA(list),MAX_HEIGHT/3,MAX_WIDTH/3)){
               case INICIAR_JUEGO:
-                 //  mvprintw();
+                 /*  mvprintw();*/
                    switch(dibujar_opciones(list_opciones_incio,INDICE_DE_LISTA(list_opciones_incio),MAX_HEIGHT/3,MAX_WIDTH/3)){
                          case 0:
                               *cantidad_de_jugadores=UN_JUGADOR;
@@ -106,7 +106,7 @@
                               *cantidad_de_jugadores=DOS_JUGADORES;
                               return MODO_COLOR;
                          case 2:
-                              continue;//Re-dibujamos la lista y comenzamos de nuevo.
+                              continue;/*Re-dibujamos la lista y comenzamos de nuevo.*/
                    }
                    break;
               case INICIAR_JUEGO_EN_MODO_TEXTO:
@@ -119,29 +119,31 @@
                               break;
                          case 2:
                               continue;
-                         case EXIT:
-                              continue;
+					    case EXIT:
+							continue;
                    }
                    return MODO_TEXTO;
           
               case NIVEL_DE_DIFICULTA:
                    switch(dibujar_opciones(list_difilculta,INDICE_DE_LISTA(list_difilculta),MAX_HEIGHT/3,MAX_WIDTH/3)){
-                        case 0://FACIL.
+                        case 0:
                              *nivel_de_difilculta=FACIL;
                              continue;
-                        case 1://Normal
+                        case 1:
                              *nivel_de_difilculta=NORMAL;
                              continue;
-                        case 2://Dificil:
+                        case 2:
                              *nivel_de_difilculta=DIFICIL;
                              continue;
-                        case 3://Nivel Experto.
+                        case 3:
                              *nivel_de_difilculta=EXPERTO;
                              continue;
                         case 4:
                              *nivel_de_difilculta=IMPOSIBLE;
+                        /*case 5:
+                              Reglesar:
+                        */
                    }
-                   //case 5://Reglesar:
                    continue;
               case COLORS:
                    while(1)
@@ -162,20 +164,21 @@
 		}
        }
 	}
-	
-	int dibujar_opciones(const char* list[],int indice,int height,int width){
+          /**En futuro debo tratar los eventos del mouse. Asi lograr un efecto interesante en el menu principal.*/
+	int dibujar_opciones(const char* list[],const int indice,int height,int width){
         int _key_codes_=0;
 		short posicion_tecla=0;
+		int i=0;
 		clear();
         mv_at_printw(height,width,A_STANDOUT,list[posicion_tecla]);
-		for(int i=1;i<indice;i++){
-			mvprintw(i+height,width,"%s",list[i]);//Escribimos las palabras sin resaltado de letras.
+		for(i=1;i<indice;i++){
+			mvprintw(i+height,width,"%s",list[i]);/*Escribimos las palabras sin resaltado de letras.*/
 		}
 		while (1){
             _key_codes_=getch();
 			refresh();
-            mvprintw(height+posicion_tecla,width,"%s  ",list[posicion_tecla]);//Escribimos sin resaltado el indice anterior para que paresca como si fuera un texto normal.
-            switch(_key_codes_){//Tratamos las teclas como queramos.
+            mvprintw(height+posicion_tecla,width,"%s  ",list[posicion_tecla]);/*Escribimos sin resaltado el indice anterior para que paresca como si fuera un texto normal.*/
+            switch(_key_codes_){/*Tratamos las teclas como queramos.*/
 				case KEY_UP:
                 case a__ARRIBA_W__a:
                 case a__ARRIBA_w__a:
@@ -201,16 +204,19 @@
 		return ERR;
 	}
 	void draw_2(chtype color){
+       short y;
+       int x;
        attron(color);
-       for (short y=1;y<=3;y++)
-           for(short x=10;x<MAX_X-10;x++)
+       for (y=1;y<=3;y++)
+           for(x=10;x<MAX_X-10;x++)
                mvaddch(MIN_Y+y,MIN_X+x,'|');
        attroff(color);
     }
 	short mostrar_y_elejir_colores(const char* personaje,chtype* color_elegido,short fondo){
           short cantidad_de_paletas_total_de_colores=0;
-          short y=0,x=X_OSC;//Pocicion actual es la de la primera lista y el primer elemento.
+          short y=0,x=X_OSC;/*Pocicion actual es la de la primera lista y el primer elemento.*/
           int _key_codes_=0;
+          unsigned short i;
           const char* colores_oscuros[]={
                 "- Color blanco predeterminado.",
                 "- Color rojo oscuro.",
@@ -233,16 +239,15 @@
                 "- Color negro.",
                 "        - Exit."
           };
-          chtype paletas[INDICE_DE_LISTA(colores_oscuros)-1];//El tamaño de la matris "colores_oscuros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.
-          chtype paletas_de_colores_claros[INDICE_DE_LISTA(colores_claros)-1];//El tamaño de la matris "colores_claros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.
+          chtype paletas[INDICE_DE_LISTA(colores_oscuros)-1];/*El tama�o de la matris "colores_oscuros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.*/
+          chtype paletas_de_colores_claros[INDICE_DE_LISTA(colores_claros)-1];/*El tama�o de la matris "colores_claros" -1 por exit  debe coincidir con la cantidad de las paletas reservadas.*/
           
           cantidad_de_paletas_total_de_colores=INDICE_DE_LISTA(colores_oscuros)-1;
           clear();
-          /****To...DO: crear paletas de colores claros y dibujarla aquí.
-          Usa la lista ya creada en: C:\C_CPP\Experimentos\Experimentando_con_colores_con_ncurses.c
-          */
+          /****En futuro debo crear paletas de colores claros y dibujarla aqu�.*/
           mvprintw(MIN_Y,MAX_X/3,"Cambiar el color del personaje: %s",personaje);
-          for(unsigned short i=0;i<sizeof(colores_oscuros)/sizeof(char*)-1/**Nota el menos 1 es por exit.**/;i++){
+          for(i=0;i<sizeof(colores_oscuros)/sizeof(char*)-1;i++){
+                                        /**Nota el menos -1 es por exit.**/
                     if (i==0){
                        paletas[i]=A_STANDOUT;
                        paletas_de_colores_claros[i]=A_STANDOUT;
